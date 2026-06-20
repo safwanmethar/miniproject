@@ -1,3 +1,4 @@
+import os
 """
 Django settings for mini project.
 
@@ -25,10 +26,10 @@ SECRET_KEY = 'django-insecure-+etq7u#u3_t=d2p1q3tbd!_y7_zbb9o4^kjk^!*rhyvhk%%l3q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost",
+ALLOWED_HOSTS = [
+    "localhost",
     "127.0.0.1",
-    ".vercel.app",
-    os.environ.get("VERCEL_URL", "")
+    ".vercel.app"
 ]
 
 
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'mini.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': '/tmp/db.sqlite3',
     }
 }
 
