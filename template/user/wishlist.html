@@ -1,0 +1,165 @@
+{% extends 'user/user_base.html' %}
+
+{% block title %}
+Wishlist
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .page-title{
+        font-weight:700;
+        color:#157347;
+        margin-bottom:20px;
+    }
+
+    .wishlist-card{
+        border:none;
+        border-radius:18px;
+        overflow:hidden;
+        background:#fff;
+        box-shadow:0 8px 25px rgba(0,0,0,0.08);
+        transition:0.3s;
+        height:100%;
+    }
+
+    .wishlist-card:hover{
+        transform:translateY(-6px);
+        box-shadow:0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .wishlist-img{
+        width:100%;
+        height:220px;
+        object-fit:cover;
+    }
+
+    .wishlist-body{
+        padding:15px;
+    }
+
+    .wishlist-title{
+        font-size:16px;
+        font-weight:700;
+        margin-bottom:6px;
+    }
+
+    .wishlist-price{
+        font-size:18px;
+        font-weight:700;
+        color:#198754;
+        margin-bottom:12px;
+    }
+
+    .btn-view{
+        border-radius:30px;
+        font-size:13px;
+        font-weight:600;
+        padding:6px 14px;
+    }
+
+    .btn-remove{
+        border-radius:30px;
+        font-size:13px;
+        font-weight:600;
+        padding:6px 14px;
+    }
+
+    /* EMPTY STATE */
+    .empty-box{
+        text-align:center;
+        padding:60px 20px;
+        background:#fff;
+        border-radius:18px;
+        box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .empty-box h4{
+        color:#157347;
+        font-weight:700;
+        margin-bottom:10px;
+    }
+
+    .empty-box p{
+        color:#6c757d;
+        margin-bottom:20px;
+    }
+
+</style>
+
+<div class="container">
+
+    <!-- TITLE -->
+    <h2 class="page-title">Your Wishlist ❤️</h2>
+
+    {% if wishlist_items %}
+
+    <!-- GRID -->
+    <div class="row g-4">
+
+        {% for item in wishlist_items %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6">
+
+            <div class="wishlist-card">
+
+                {% if item.product.image %}
+                <img src="{{ item.product.image.url }}"
+                     class="wishlist-img"
+                     alt="{{ item.product.name }}">
+                {% endif %}
+
+                <div class="wishlist-body">
+
+                    <div class="wishlist-title">
+                        {{ item.product.name }}
+                    </div>
+
+                    <div class="wishlist-price">
+                        ₹{{ item.product.price }}
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+
+                        <a href="/product/{{ item.product.id }}"
+                           class="btn btn-success btn-view">
+                            View
+                        </a>
+
+                        <a href="/remove-from-wishlist/{{ item.id }}"
+                           class="btn btn-danger btn-remove">
+                            Remove
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <!-- EMPTY STATE -->
+    <div class="empty-box">
+
+        <h4>Your wishlist is empty</h4>
+        <p>Save products you like and come back anytime.</p>
+
+        <a href="/products" class="btn btn-success px-4 py-2">
+            Browse Products
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

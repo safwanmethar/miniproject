@@ -1,0 +1,163 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}
+Reviews
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .page-title{
+        font-weight:800;
+        margin-bottom:5px;
+    }
+
+    .subtitle{
+        color:#6b7280;
+        margin-bottom:20px;
+    }
+
+    .card-box{
+        background:white;
+        border-radius:18px;
+        padding:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.05);
+        border:1px solid rgba(0,0,0,0.05);
+    }
+
+    .table thead{
+        background:#f9fafb;
+    }
+
+    .table th{
+        font-size:13px;
+        font-weight:800;
+        text-transform:uppercase;
+        letter-spacing:0.5px;
+        border:none !important;
+        color:#374151;
+    }
+
+    .table td{
+        vertical-align:middle;
+        border-color:#f1f5f9 !important;
+    }
+
+    .table tbody tr{
+        transition:0.2s;
+    }
+
+    .table tbody tr:hover{
+        background:#f9fafb;
+        transform:scale(1.01);
+    }
+
+    .badge-product{
+        background:#eff6ff;
+        color:#1d4ed8;
+        padding:5px 10px;
+        border-radius:999px;
+        font-size:12px;
+        font-weight:600;
+    }
+
+    .badge-user{
+        background:#ecfdf5;
+        color:#16a34a;
+        padding:5px 10px;
+        border-radius:999px;
+        font-size:12px;
+        font-weight:600;
+    }
+
+    .rating{
+        font-weight:800;
+        color:#f59e0b;
+    }
+
+    .comment{
+        color:#6b7280;
+        font-size:13px;
+    }
+
+    .table-responsive{
+        overflow-x:auto;
+    }
+
+    .stars{
+        color:#f59e0b;
+        font-weight:700;
+    }
+
+</style>
+
+<div class="mb-3">
+
+    <h2 class="page-title">⭐ Product Reviews</h2>
+    <div class="subtitle">Customer feedback and product ratings</div>
+
+</div>
+
+<div class="card-box">
+
+    <div class="table-responsive">
+
+        <table class="table align-middle">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>User</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for review in reviews %}
+
+                <tr>
+
+                    <td>#{{ review.id }}</td>
+
+                    <td>
+                        <span class="badge-product">
+                            {{ review.product.name }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge-user">
+                            {{ review.user.username }}
+                        </span>
+                    </td>
+
+                    <td class="stars">
+                        {% if review.rating == 5 %}★★★★★
+                        {% elif review.rating == 4 %}★★★★☆
+                        {% elif review.rating == 3 %}★★★☆☆
+                        {% elif review.rating == 2 %}★★☆☆☆
+                        {% else %}★☆☆☆☆
+                        {% endif %}
+                    </td>
+
+                    <td class="comment">
+                        {{ review.comment }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'user/user_base.html' %}
+
+{% block title %}
+Checkout
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Checkout</h2>
+
+<div class="row">
+
+    <div class="col-md-7">
+
+        <div class="card p-4">
+
+            <h4>Shipping Details</h4>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label>Full Name</label>
+                    <input type="text" name="name" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Address</label>
+                    <textarea name="address" class="form-control" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label>Phone</label>
+                    <input type="text" name="phone" class="form-control" required>
+                </div>
+
+                <button class="btn btn-success w-100">
+                    Place Order
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Order Summary -->
+
+    <div class="col-md-5">
+
+        <div class="card p-4">
+
+            <h4>Order Summary</h4>
+
+            <hr>
+
+            <p>Total Items: {{ total_items }}</p>
+            <h5>Total: ₹{{ total_price }}</h5>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

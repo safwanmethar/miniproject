@@ -1,0 +1,52 @@
+{% extends 'user/user_base.html' %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% block content %}
+
+<div class="card p-4">
+
+    <h2>Dummy Payment</h2>
+
+    <p>
+        Order ID: {{ order.id }}
+    </p>
+
+    <p>
+        Amount: ₹{{ order.total_price }}
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="mb-3">
+
+            <label>Payment Method</label>
+
+            <select name="payment_method"
+                    class="form-control">
+
+                <option>UPI</option>
+                <option>Credit Card</option>
+                <option>Debit Card</option>
+                <option>Cash On Delivery</option>
+
+            </select>
+
+        </div>
+
+        <button class="btn btn-success">
+            Complete Payment
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

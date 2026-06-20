@@ -1,0 +1,237 @@
+ {% extends 'user/user_base.html' %}
+
+{% block title %}
+Cart
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .page-title{
+        font-weight:700;
+        color:#157347;
+        margin-bottom:20px;
+    }
+
+    /* CART ITEM */
+    .cart-item{
+        background:#fff;
+        border:none;
+        border-radius:18px;
+        box-shadow:0 8px 25px rgba(0,0,0,0.08);
+        padding:15px;
+        margin-bottom:15px;
+        transition:0.3s;
+    }
+
+    .cart-item:hover{
+        transform:translateY(-3px);
+    }
+
+    .cart-img{
+        width:100%;
+        max-height:120px;
+        object-fit:cover;
+        border-radius:12px;
+    }
+
+    .product-name{
+        font-size:16px;
+        font-weight:700;
+        margin-bottom:5px;
+    }
+
+    .price{
+        font-weight:700;
+        color:#198754;
+    }
+
+    .qty{
+        font-size:14px;
+        color:#6c757d;
+    }
+
+    .btn-remove{
+        border-radius:30px;
+        font-size:13px;
+        font-weight:600;
+        padding:6px 14px;
+    }
+
+    /* SUMMARY CARD */
+    .summary-card{
+        background:#fff;
+        border:none;
+        border-radius:18px;
+        box-shadow:0 8px 25px rgba(0,0,0,0.08);
+        padding:20px;
+        position:sticky;
+        top:100px;
+    }
+
+    .summary-title{
+        font-weight:700;
+        color:#157347;
+        margin-bottom:10px;
+    }
+
+    .summary-line{
+        display:flex;
+        justify-content:space-between;
+        margin-bottom:10px;
+        font-size:15px;
+    }
+
+    .checkout-btn{
+        border-radius:30px;
+        font-weight:600;
+        padding:10px;
+    }
+
+    /* EMPTY STATE */
+    .empty-box{
+        text-align:center;
+        padding:60px 20px;
+        background:#fff;
+        border-radius:18px;
+        box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .empty-box h4{
+        color:#157347;
+        font-weight:700;
+    }
+
+    .empty-box p{
+        color:#6c757d;
+    }
+
+    @media(max-width:768px){
+        .summary-card{
+            position:static;
+            margin-top:20px;
+        }
+
+        .cart-img{
+            max-height:160px;
+            margin-bottom:10px;
+        }
+    }
+
+</style>
+
+<div class="container">
+
+    <h2 class="page-title">Your Cart 🛒</h2>
+
+    {% if cart_items %}
+
+    <div class="row">
+
+        <!-- CART ITEMS -->
+        <div class="col-lg-8">
+
+            {% for item in cart_items %}
+
+            <div class="cart-item">
+
+                <div class="row align-items-center">
+
+                    <!-- IMAGE -->
+                    <div class="col-md-3 col-4">
+                        {% if item.product.image %}
+                        <img src="{{ item.product.image.url }}"
+                             class="cart-img"
+                             alt="{{ item.product.name }}">
+                        {% endif %}
+                    </div>
+
+                    <!-- DETAILS -->
+                    <div class="col-md-6 col-8">
+
+                        <div class="product-name">
+                            {{ item.product.name }}
+                        </div>
+
+                        <div class="price">
+                            ₹{{ item.product.price }}
+                        </div>
+
+                        <div class="qty">
+                            Quantity: {{ item.quantity }}
+                        </div>
+
+                    </div>
+
+                    <!-- ACTION -->
+                    <div class="col-md-3 text-md-end text-start mt-2 mt-md-0">
+
+                        <a href="{% url 'remove_from_cart' item.id %}"
+                           class="btn btn-danger btn-remove">
+                            Remove
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="col-lg-4">
+
+            <div class="summary-card">
+
+                <div class="summary-title">
+                    Order Summary
+                </div>
+
+                <hr>
+
+                <div class="summary-line">
+                    <span>Total Items</span>
+                    <strong>{{ total_items }}</strong>
+                </div>
+
+                <div class="summary-line">
+                    <span>Total Price</span>
+                    <strong class="text-success">₹{{ total_price }}</strong>
+                </div>
+
+                <hr>
+
+                <a href="/checkout"
+                   class="btn btn-success w-100 checkout-btn">
+                    Proceed to Checkout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <!-- EMPTY CART -->
+    <div class="empty-box">
+
+        <h4>Your cart is empty</h4>
+        <p>Looks like you haven’t added anything yet.</p>
+
+        <a href="{% url 'products' %}" class="btn btn-success px-4">
+            Shop Now
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

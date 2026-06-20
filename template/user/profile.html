@@ -1,0 +1,164 @@
+{% extends 'user/user_base.html' %}
+
+{% block content %}
+
+<style>
+    .profile-wrapper{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px 10px;
+    }
+
+    .profile-card{
+        width:100%;
+        max-width:600px;
+        border-radius:24px;
+        background:#fff;
+        box-shadow:0 10px 30px rgba(0,0,0,0.08);
+        padding:30px;
+        transition:0.3s;
+    }
+
+    .profile-card:hover{
+        transform:translateY(-4px);
+    }
+
+    .profile-header{
+        text-align:center;
+        margin-bottom:25px;
+    }
+
+    .profile-avatar{
+        width:90px;
+        height:90px;
+        border-radius:50%;
+        background:linear-gradient(135deg,#198754,#157347);
+        color:white;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:36px;
+        font-weight:bold;
+        margin:0 auto 15px;
+        box-shadow:0 8px 20px rgba(25,135,84,0.3);
+    }
+
+    .profile-header h2{
+        margin:0;
+        font-weight:700;
+        color:#157347;
+    }
+
+    .profile-header p{
+        color:#6c757d;
+        margin-top:5px;
+        font-size:14px;
+    }
+
+    .info-box{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        padding:12px 15px;
+        border-radius:14px;
+        background:#f8f9fa;
+        margin-bottom:12px;
+        transition:0.3s;
+    }
+
+    .info-box:hover{
+        background:#eaf7ef;
+    }
+
+    .info-icon{
+        width:40px;
+        height:40px;
+        border-radius:10px;
+        background:#198754;
+        color:white;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:18px;
+    }
+
+    .info-text strong{
+        display:block;
+        font-size:13px;
+        color:#6c757d;
+    }
+
+    .info-text span{
+        font-size:16px;
+        font-weight:600;
+        color:#212529;
+    }
+
+    @media(max-width:576px){
+        .profile-card{
+            padding:20px;
+        }
+
+        .profile-avatar{
+            width:75px;
+            height:75px;
+            font-size:30px;
+        }
+    }
+</style>
+
+<div class="profile-wrapper">
+
+    <div class="profile-card">
+
+        <!-- HEADER -->
+        <div class="profile-header">
+
+            <div class="profile-avatar">
+                {{ request.user.username|first|upper }}
+            </div>
+
+            <h2>My Profile</h2>
+            <p>Manage your account information</p>
+
+        </div>
+
+        <!-- INFO -->
+        <div class="info-box">
+            <div class="info-icon">
+                <i class="bi bi-person"></i>
+            </div>
+            <div class="info-text">
+                <strong>Username</strong>
+                <span>{{ request.user.username }}</span>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-icon">
+                <i class="bi bi-person-badge"></i>
+            </div>
+            <div class="info-text">
+                <strong>Full Name</strong>
+                <span>
+                    {{ request.user.first_name }} {{ request.user.last_name }}
+                </span>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-icon">
+                <i class="bi bi-envelope"></i>
+            </div>
+            <div class="info-text">
+                <strong>Email</strong>
+                <span>{{ request.user.email }}</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

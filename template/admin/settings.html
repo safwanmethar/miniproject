@@ -1,0 +1,110 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}
+Settings
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .page-title{
+        font-weight:800;
+        margin-bottom:20px;
+    }
+
+    .settings-card{
+        background:white;
+        border-radius:20px;
+        padding:25px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.05);
+        border:1px solid rgba(0,0,0,0.05);
+        max-width:700px;
+    }
+
+    .setting-row{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:12px 0;
+        border-bottom:1px solid #f1f5f9;
+    }
+
+    .setting-row:last-child{
+        border-bottom:none;
+    }
+
+    .label{
+        font-weight:600;
+        color:#374151;
+    }
+
+    .value{
+        color:#6b7280;
+        font-weight:500;
+    }
+
+    .badge-green{
+        background:#ecfdf5;
+        color:#16a34a;
+        padding:5px 10px;
+        border-radius:999px;
+        font-size:12px;
+        font-weight:600;
+    }
+
+    .badge-blue{
+        background:#eff6ff;
+        color:#1d4ed8;
+        padding:5px 10px;
+        border-radius:999px;
+        font-size:12px;
+        font-weight:600;
+    }
+
+    .icon{
+        font-size:18px;
+        margin-right:6px;
+    }
+
+</style>
+
+<h2 class="page-title">⚙️ Settings</h2>
+
+<div class="settings-card">
+
+    <div class="setting-row">
+
+        <div class="label">Store Name</div>
+
+        <span class="badge-green">EcoShop Electronics</span>
+
+    </div>
+
+    <div class="setting-row">
+
+        <div class="label">Version</div>
+
+        <span class="badge-blue">1.0</span>
+
+    </div>
+
+    <div class="setting-row">
+
+        <div class="label">Panel Status</div>
+
+        <span class="value">Active</span>
+
+    </div>
+
+    <div class="setting-row">
+
+        <div class="label">Environment</div>
+
+        <span class="badge-blue">Production</span>
+
+    </div>
+
+</div>
+
+{% endblock %}

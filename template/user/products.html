@@ -1,0 +1,254 @@
+{% extends 'user/user_base.html' %}
+
+{% block title %}
+Products
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+.page-header{
+    background:linear-gradient(135deg,#198754,#20c997);
+    color:white;
+    padding:25px;
+    border-radius:12px;
+    margin-bottom:25px;
+}
+
+.page-header h2{
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.page-header p{
+    margin:0;
+}
+
+/* PRODUCT CARD */
+
+.product-card{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    overflow:hidden;
+    height:100%;
+    transition:.3s;
+}
+
+.product-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 6px 20px rgba(0,0,0,.12);
+}
+
+.product-img-box{
+    position:relative;
+    background:#fff;
+}
+
+.product-img{
+    width:100%;
+    height:220px;
+    object-fit:contain;
+    padding:15px;
+}
+
+.discount-badge{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:#ff6161;
+    color:#fff;
+    font-size:11px;
+    padding:4px 8px;
+    border-radius:4px;
+}
+
+.product-body{
+    padding:12px;
+}
+
+.product-title{
+    font-size:14px;
+    font-weight:600;
+    color:#212121;
+
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+
+    min-height:42px;
+}
+
+.product-brand{
+    font-size:12px;
+    color:#878787;
+    margin-top:5px;
+}
+
+.rating{
+    display:inline-block;
+    background:#388e3c;
+    color:white;
+    font-size:11px;
+    padding:3px 8px;
+    border-radius:4px;
+    margin-top:8px;
+}
+
+.product-price{
+    font-size:22px;
+    font-weight:700;
+    color:#212121;
+}
+
+.old-price{
+    font-size:13px;
+    color:#878787;
+    text-decoration:line-through;
+}
+
+.discount{
+    color:#388e3c;
+    font-size:13px;
+    font-weight:600;
+}
+
+.btn-view{
+    border-radius:5px;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .page-header{
+        text-align:center;
+        padding:20px;
+    }
+
+    .product-img{
+        height:150px;
+    }
+
+    .product-title{
+        font-size:13px;
+        min-height:38px;
+    }
+
+    .product-price{
+        font-size:18px;
+    }
+
+    .btn-view{
+        font-size:13px;
+        padding:8px;
+    }
+
+}
+
+</style>
+
+<div class="container-fluid">
+
+
+<!-- PAGE HEADER -->
+
+<div class="page-header">
+
+    <h2>⚡ Electronics Store</h2>
+
+    <p>
+        Browse the latest electronics at the best prices
+    </p>
+
+</div>
+
+<!-- PRODUCTS GRID -->
+
+<div class="row g-3">
+
+    {% for product in products %}
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+
+        <div class="product-card">
+
+            <div class="product-img-box">
+
+                {% if product.image %}
+                <img src="{{ product.image.url }}"
+                     class="product-img"
+                     alt="{{ product.name }}">
+                {% endif %}
+
+                <span class="discount-badge">
+                    20% OFF
+                </span>
+
+            </div>
+
+            <div class="product-body">
+
+                <div class="product-title">
+                    {{ product.name }}
+                </div>
+
+                <div class="product-brand">
+                    {{ product.brand }}
+                </div>
+
+                <div class="rating">
+                    ★ 4.5
+                </div>
+
+                <div class="mt-2">
+
+                    <span class="product-price">
+                        ₹{{ product.price }}
+                    </span>
+
+                    <br>
+
+                    <span class="old-price">
+                        ₹{{ product.price }}
+                    </span>
+
+                    <span class="discount">
+                        20% off
+                    </span>
+
+                </div>
+
+                <a href="/product/{{ product.id }}/"
+                   class="btn btn-success btn-view w-100 mt-3">
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="col-12">
+
+        <div class="alert alert-warning text-center">
+            No Products Found
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+</div>
+
+{% endblock %}

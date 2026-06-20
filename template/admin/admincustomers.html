@@ -1,0 +1,134 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}
+Customers
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .page-title{
+        font-weight:800;
+        margin-bottom:20px;
+    }
+
+    .table-card{
+        background:white;
+        border-radius:18px;
+        padding:15px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.05);
+        border:1px solid rgba(0,0,0,0.05);
+    }
+
+    .table thead{
+        background:#f9fafb;
+    }
+
+    .table th{
+        font-size:13px;
+        font-weight:800;
+        text-transform:uppercase;
+        letter-spacing:0.5px;
+        border:none !important;
+        color:#374151;
+    }
+
+    .table td{
+        vertical-align:middle;
+        border-color:#f1f5f9 !important;
+        font-weight:500;
+    }
+
+    .table tbody tr{
+        transition:0.2s;
+    }
+
+    .table tbody tr:hover{
+        background:#f9fafb;
+        transform:scale(1.01);
+    }
+
+    .badge-user{
+        background:#ecfdf5;
+        color:#16a34a;
+        padding:5px 10px;
+        border-radius:999px;
+        font-size:12px;
+        font-weight:600;
+    }
+
+    .badge-email{
+        background:#eff6ff;
+        color:#1d4ed8;
+        padding:5px 10px;
+        border-radius:999px;
+        font-size:12px;
+        font-weight:600;
+    }
+
+    .muted{
+        color:#6b7280;
+        font-size:13px;
+    }
+
+    .table-responsive{
+        overflow-x:auto;
+    }
+
+</style>
+
+<h2 class="page-title">👥 Customers</h2>
+
+<div class="table-card">
+
+    <div class="table-responsive">
+
+        <table class="table align-middle">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Date Joined</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for customer in customers %}
+
+                <tr>
+
+                    <td>#{{ customer.id }}</td>
+
+                    <td>
+                        <span class="badge-user">
+                            {{ customer.username }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge-email">
+                            {{ customer.email }}
+                        </span>
+                    </td>
+
+                    <td class="muted">
+                        {{ customer.date_joined }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .page-title{
+        font-weight:700;
+        margin-bottom:20px;
+    }
+
+    .stat-card{
+        background:linear-gradient(135deg,#ffffff,#f9fafb);
+        border:1px solid rgba(0,0,0,0.05);
+        border-radius:18px;
+        padding:22px;
+        text-align:center;
+        box-shadow:0 8px 25px rgba(0,0,0,0.05);
+        transition:0.3s ease;
+        position:relative;
+        overflow:hidden;
+    }
+
+    .stat-card:hover{
+        transform:translateY(-5px);
+        box-shadow:0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .stat-card h3{
+        font-size:28px;
+        font-weight:800;
+        margin-bottom:5px;
+        color:#111827;
+    }
+
+    .stat-card p{
+        margin:0;
+        color:#6b7280;
+        font-weight:500;
+    }
+
+    .stat-icon{
+        font-size:22px;
+        margin-bottom:8px;
+        display:inline-block;
+        background:#ecfdf5;
+        color:#16a34a;
+        padding:10px;
+        border-radius:12px;
+    }
+
+    /* responsive spacing */
+    @media(max-width:768px){
+        .stat-card{
+            margin-bottom:15px;
+        }
+    }
+</style>
+
+<h2 class="page-title">📊 Dashboard Overview</h2>
+
+<div class="row g-4">
+
+    <div class="col-lg-3 col-md-6">
+        <div class="stat-card">
+            <div class="stat-icon">📦</div>
+            <h3>{{ total_products }}</h3>
+            <p>Products</p>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="stat-card">
+            <div class="stat-icon">🛒</div>
+            <h3>{{ total_orders }}</h3>
+            <p>Orders</p>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <h3>{{ total_users }}</h3>
+            <p>Users</p>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="stat-card">
+            <div class="stat-icon">⏳</div>
+            <h3>{{ pending_orders }}</h3>
+            <p>Pending Orders</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

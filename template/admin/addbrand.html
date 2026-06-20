@@ -1,0 +1,22 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block content %}
+
+<h2>Add Brand</h2>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <input type="text"
+           name="name"
+           class="form-control mb-3"
+           required>
+
+    <button class="btn btn-success">
+        Save
+    </button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}
+Sales Report
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .page-title{
+        font-weight:800;
+        margin-bottom:20px;
+    }
+
+    .stat-card{
+        background:white;
+        border-radius:18px;
+        padding:25px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.05);
+        border:1px solid rgba(0,0,0,0.05);
+        transition:0.3s;
+        text-align:center;
+    }
+
+    .stat-card:hover{
+        transform:translateY(-5px);
+    }
+
+    .stat-value{
+        font-size:28px;
+        font-weight:800;
+        margin-bottom:5px;
+    }
+
+    .stat-label{
+        color:#6b7280;
+        font-weight:600;
+        font-size:14px;
+    }
+
+    .icon-box{
+        width:45px;
+        height:45px;
+        margin:auto;
+        border-radius:12px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        margin-bottom:10px;
+        font-size:20px;
+    }
+
+    .blue{ background:#eff6ff; color:#1d4ed8; }
+    .green{ background:#ecfdf5; color:#16a34a; }
+    .orange{ background:#fff7ed; color:#c2410c; }
+
+</style>
+
+<h2 class="page-title">📊 Sales Report</h2>
+
+<div class="row g-4">
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="stat-card">
+
+            <div class="icon-box blue">🛒</div>
+
+            <div class="stat-value">{{ total_orders }}</div>
+
+            <div class="stat-label">Total Orders</div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="stat-card">
+
+            <div class="icon-box green">💰</div>
+
+            <div class="stat-value">₹{{ total_sales }}</div>
+
+            <div class="stat-label">Total Sales</div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="stat-card">
+
+            <div class="icon-box orange">📦</div>
+
+            <div class="stat-value">{{ total_products }}</div>
+
+            <div class="stat-label">Total Products</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
