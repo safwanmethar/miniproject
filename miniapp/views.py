@@ -21,7 +21,7 @@ from .models import Product, Customer, Review, Cart, Wishlist, Order, OrderItem,
 
 # ---------------- HOME ----------------
 def home(request):
-    return render(request, 'Home.html')
+    return render(request, 'home.html')
 
 
 # ---------------- LOGIN ----------------
